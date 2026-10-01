@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111827">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="stylesheet" href="/style.css">
+  <title>Área do Médico | CRUD JWT</title>
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <strong>Área do Médico</strong>
+      <span class="topbar-subtitle">Área protegida</span>
+    </div>
+
+    <button class="secondary small" onclick="logout()">Sair</button>
+  </header>
+
+  <main class="dashboard">
+    <section class="hero">
+      <div>
+        <span class="eyebrow">Área do médico</span>
+        <h1>Bem-vindo!</h1>
+        <p>Escolha uma das opções disponíveis para continuar.</p>
+      </div>
+    </section>
+
+    <section class="grid-dashboard">
+      <section class="card">
+        <h2>Meus pacientes</h2>
+        <p class="muted">
+          Consulte os pacientes atendidos.
+        </p>
+        <button class="primary">Acessar pacientes</button>
+      </section>
+
+      <section class="card">
+        <h2>Minha agenda</h2>
+        <p class="muted">
+          Consulte seus horários e agendamentos.
+        </p>
+        <button class="primary">Ver agenda</button>
+      </section>
+
+      <section class="card">
+        <h2>Meus atendimentos</h2>
+        <p class="muted">
+          Consulte seus atendimentos.
+        </p>
+        <button class="primary">Ver atendimentos</button>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const token = localStorage.getItem('token')
+
+    if (!token) {
+      window.location.href = '/'
+    }
+
+    function logout() {
+      localStorage.removeItem('token')
+      localStorage.removeItem('usuario')
+      window.location.href = '/'
+    }
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js')
+    }
+  </script>
+</body>
+</html>
